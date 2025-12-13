@@ -1,26 +1,27 @@
-// Last updated: 12/11/2025, 8:01:47 PM
-public class Solution {
-    public int[] TopKFrequent(int[] nums, int k) {
-        Dictionary<int, int> hashMap = new();
-        PriorityQueue<int, int> pq = new();
-        List<int> result = new();
-        for(int i=0; i<nums.Length; i++)
-        {
-            hashMap.TryAdd(nums[i], 0);
-            hashMap[nums[i]] += 1;
-        }
-        foreach(var item in hashMap)
-        {
-            pq.Enqueue(item.Key, item.Value);
-            if(pq.Count > k)
-            {
-                pq.Dequeue();
-            }
-        }
-        while(pq.Count > 0)
-        {
-            result.Add(pq.Dequeue());
-        }
-        return result.ToArray();
-    }
-}
+// Last updated: 12/12/2025, 8:17:25 PM
+1public class Solution {
+2    public int[] TopKFrequent(int[] nums, int k) {
+3        List<int> result = new();
+4        PriorityQueue<int, int> pq = new();
+5        Dictionary<int, int> dict = new();
+6        int i=0;
+7        for( i=0; i<nums.Length; i++)
+8        {
+9            dict.TryAdd(nums[i], 0);
+10            dict[nums[i]] += 1;
+11        }
+12        foreach(var item in dict)
+13        {
+14            pq.Enqueue(item.Key, item.Value);
+15            if(pq.Count>0 && pq.Count > k)
+16            {
+17                pq.Dequeue();
+18            }
+19        }
+20        while(pq.Count > 0)
+21        {
+22            result.Add(pq.Dequeue());
+23        }
+24        return result.ToArray();
+25    }
+26}
