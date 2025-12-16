@@ -1,30 +1,35 @@
-// Last updated: 12/11/2025, 8:02:50 PM
 public class Solution {
     public int LongestConsecutive(int[] nums) {
-        int seq=0, maxSeq=0, i=0, num=0;
-
-        HashSet<int> hashSet = new();
+        HashSet<int> numSet = new();
+        int i=0, seq=0, longestSeq=0, num=0;
         for(i=0; i<nums.Length; i++)
         {
-            hashSet.Add(nums[i]);
+            numSet.Add(nums[i]);
         }
-        i=0;
-        while(i<nums.Length)
+        for(i=0; i<nums.Length; i++)
         {
             num = nums[i];
-            seq=1;
-            if(!hashSet.Contains(num-1))
+            // The below condition is the optimization which avoid 
+            // iteration at both ends -ve & +ve.
+            // Checking this condition means this is the start of the sequence.
+            if(!numSet.Contains(num - 1))
             {
+                seq = 1;
                 num++;
-                while(hashSet.Contains(num))
+                while(numSet.Contains(num))
                 {
                     seq++;
                     num++;
                 }
+                longestSeq = Math.Max(longestSeq, seq);
             }
-            maxSeq = Math.Max(maxSeq, seq);
-            i++;
+            // Added this loop to iterate the same sequence start number like if a list contains multiple 1's, so it will only
+            // calculate the sequence only once.
+            while(i<nums.Length-1 && nums[i] == nums[i+1])
+            {
+                i++;
+            }
         }
-        return maxSeq;
+        return longestSeq;
     }
 }
