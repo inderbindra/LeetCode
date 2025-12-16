@@ -1,4 +1,4 @@
-// Last updated: 12/15/2025, 7:04:18 PM
+// Last updated: 12/15/2025, 7:05:13 PM
 1public class Solution {
 2    public int[] ProductExceptSelf(int[] nums) {
 3        int[] result = new int[nums.Length];
