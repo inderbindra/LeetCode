@@ -1,4 +1,4 @@
-// Last updated: 1/6/2026, 5:19:33 PM
+// Last updated: 1/6/2026, 5:22:34 PM
 1public class TrieNode
 2{
 3    public Dictionary<char, TrieNode> Children;
