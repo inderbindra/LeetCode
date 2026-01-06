@@ -1,4 +1,4 @@
-// Last updated: 1/6/2026, 5:22:47 PM
+// Last updated: 1/6/2026, 5:24:57 PM
 1public class TrieNode
 2{
 3    public Dictionary<char, TrieNode> Children;
@@ -64,8 +64,8 @@
 63            node.IsEndOfWord = false;
 64        }
 65        if(row <0 || row >= rows || col <0 || col >= cols ||
-66        !node.Children.ContainsKey(board[row][col]) ||
-67        visitedSet.Contains((row, col)))
+66          !node.Children.ContainsKey(board[row][col]) ||            // Shifting this condition to the last, will also result in TLE.
+67          visitedSet.Contains((row, col)))
 68        {
 69            //Console.WriteLine("Row = " + row + " Col = " + col);
 70            return;
